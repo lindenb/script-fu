@@ -16,11 +16,8 @@
 	 (gimp-image-undo-group-start image)
 	 (gimp-context-push)
 	 (gimp-progress-init "Start" -1)
-	 (set! bg (car (gimp-layer-new image  (- x2 x1) (- y2 y1) RGBA-IMAGE "kirby01" 100 NORMAL-MODE)))
-	 (gimp-image-add-layer image bg 0)
+	 (set! bg (car (gimp-image-get-active-layer image)))
 	 (gimp-drawable-set-visible bg TRUE)
-	 (gimp-layer-set-offsets bg x1 y1 )
-	 (gimp-image-set-active-layer image bg)
 	 (gimp-palette-set-foreground color)
 	 (set! selection (car (gimp-selection-save image)))
 	 
