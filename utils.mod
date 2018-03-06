@@ -17,5 +17,8 @@
 ;; perimeter of a circle
 ;;
 (define circle-perimeter  (lambda (r) (* pi2 r) ) )
-
+;;
+;; returns floating number between a and b
+;; 
+(define random-float-between  (lambda (a b)  (+ (min a b) (* (rnd) (- (max a b) (min a b))) ) ))
 
