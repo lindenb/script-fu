@@ -18,6 +18,9 @@
      		(my 0) 
      		(nx 0) 
      		(ny 0)
+     		(i 0)
+     		(opac  (* (rnd ) 100.0) )
+     		(pen-size  (* (rnd ) 3.0) )
 	 	)
 	 (gimp-image-undo-group-start image)
 	 (gimp-context-push)
@@ -28,7 +31,7 @@
 	 
 	 (gimp-context-set-paint-mode NORMAL-MODE)
 	 (gimp-context-set-brush "Circle (01)")
-	 (gimp-context-set-brush-size 1.0)
+	 
 	 (gimp-context-set-foreground '(0 0 0))
 
 	 
@@ -41,9 +44,19 @@
 	   (set! my  (random-float-between y1 y2) )
 	   (set! nx  (+ mx (* (cos angle) rainlength)))
 	   (set! ny  (+ my (* (sin angle) rainlength)))
-	   (gimp-context-set-opacity (* (rnd ) 100.0))
-	   (gimp-paintbrush-default  bg 4 (list->vector (list mx my nx ny)))
-	   
+	   (set! i 0)
+	   (while (< i 10)
+	   	 (set! mx (lerp 0.5 nx mx))
+	   	 (set! my (lerp 0.5 ny my))
+	  	 (gimp-context-set-opacity opac )
+	  	 (gimp-context-set-brush-size pen-size)
+	  	 (gimp-paintbrush-default  bg 4 (list->vector (list mx my nx ny)))
+	  	 
+	  	 (set! pen-size (* pen-size 0.8) )
+	  	 (set! opac (* opac 0.8) )
+	  	 (set! i (+ i 1))
+	   )
+	  
 	   (set! n (+ n 1))
 	 )
 	 

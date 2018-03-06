@@ -18,7 +18,15 @@
 ;;
 (define circle-perimeter  (lambda (r) (* pi2 r) ) )
 ;;
+;; lerp '(a+t*(b-a));'
+;;
+(define lerp (lambda (t,a,b) (+ a (* t (- b a))) ))
+;;
 ;; returns floating number between a and b
 ;; 
-(define random-float-between  (lambda (a b)  (+ (min a b) (* (rnd) (- (max a b) (min a b))) ) ))
+(define random-float-between  (lambda (a b) (lerp (rnd) (min a b) (max a b) ) ))
+
+
+
+
 
