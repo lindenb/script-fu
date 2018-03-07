@@ -1,13 +1,23 @@
 #!/usr/bin/env python
 
-
+## gimpbook.com/scripting
 
 from gimpfu import *
+import sys
+import gimputils
 
-def speed01(initstr, font, size, color) :
+
+
+class Speed01(gimputils.AbstractGimpPlugin):
+	pass
+
+
+def speed01(image, drawable, initstr, font, size, color) :
+	self = Speed01()
+	self.width = drawable.width
+        self.height = drawable.height
 	pdb.gimp_context_push()
-	img = gimp.Image(10, 10, RGB)
-	gimp.Display(img)
+	self.log( gimputils.add(10,17)  )
 	gimp.displays_flush()
 	pdb.gimp_context_pop()
 
@@ -21,6 +31,8 @@ register(
     "Speed01...",
     "",      # Create a new image, don't work on an existing one
     [
+   	(PF_IMAGE, "image", "Input image", None),
+        (PF_DRAWABLE, "drawable", "Input drawable", None),
         (PF_STRING, "string", "Text string", 'Hello, world!'),
         (PF_FONT, "font", "Font face", "Sans"),
         (PF_SPINNER, "size", "Font size", 50, (1, 3000, 1)),
