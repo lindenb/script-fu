@@ -38,6 +38,7 @@ class Rectangle:
 		return 'Rectangle({}x{})'.format(self.width, self.height)
 
 
+
 class GimpUtils:
 	PI = math.pi
 	PI2 = math.pi * 2.0
@@ -56,10 +57,6 @@ class GimpUtils:
 	@staticmethod
 	def log(msg):
 		sys.stderr.write( "[LOG]" + str(msg) +"\n" )
-
-
-def add(a,b):
-	return a + b
 
 class AbstractGimpPlugin:
 	def name(self):
