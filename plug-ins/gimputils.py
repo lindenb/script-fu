@@ -1,5 +1,6 @@
 import sys
 import random
+import math
 ### http://oldhome.schmorp.de/marc/pdb/index.html
 
 class Point:
@@ -36,6 +37,22 @@ class Rectangle:
 	def __str__(self):
 		return 'Rectangle({}x{})'.format(self.width, self.height)
 
+
+class GimpUtils:
+	PI = math.pi
+	PI2 = math.pi * 2.0
+	
+	@staticmethod
+	def centerOf(d):
+		x = 0
+		y = 0
+		return Point(
+			x + (d.width)/2.0,
+			y + (d.height)/2.0
+			)
+	@staticmethod
+	def distance(x1,y1,x2,y2):
+		return math.sqrt( math.pow(x2-x1,2) + math.pow(y2-y1,2) );
 
 def add(a,b):
 	return a + b
