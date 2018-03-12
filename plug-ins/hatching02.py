@@ -11,13 +11,15 @@ from gimputils import GimpUtils
 
 def hatching02(image) :
 	layer = pdb.gimp_image_get_active_layer(image)
-	strokeLen = 30.0
+	strokeLen = 60.0
+	distanceBetweenStrokes = 5.0
 	incertitude = 4
 	y = layer.height + strokeLen
 	pdb.gimp_context_push()
 	pdb.gimp_undo_push_group_start(image)
 	pdb.gimp_image_undo_freeze(image)
-
+	pdb.gimp_context_set_brush("Circle (01)")
+	pdb.gimp_context_set_brush_size(1)
 	pdb.gimp_progress_init("Start...", None)
 	while y >=  0 :
 		x = random.randrange(-10,0)
@@ -27,14 +29,14 @@ def hatching02(image) :
 			y1 = y + random.randrange(-incertitude,incertitude)
 			x2 = x + random.randrange(-incertitude,incertitude)
 			y2 = y - strokeLen  + random.randrange(-incertitude,incertitude)
-			x1 = 0
-			y1 = 0
-			x2 = image.width
-			y2  = image.height
+			#x1 = 0
+			#y1 = 0
+			#x2 = image.width
+			#y2  = image.height
 			ctrlPoints = [x1,y1,x2,y2]
 			pdb.gimp_paintbrush_default(layer, len(ctrlPoints), ctrlPoints)			
-			x += pdb.gimp_context_get_brush_size()
-			x += 20.0 + random.randrange(0,incertitude)
+			x += 2.0 * pdb.gimp_context_get_brush_size()
+			x += distanceBetweenStrokes + random.randrange(0,incertitude)
 		pdb.gimp_progress_pulse()
 		y -= strokeLen
 		y -= pdb.gimp_context_get_brush_size()
