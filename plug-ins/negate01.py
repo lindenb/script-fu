@@ -13,7 +13,7 @@ def is_blank_pixel(c,treshold):
     return
   c= c[1];
   white = 255-treshold
-  return (len(c)> 2 and c[0]>white and c[1]>white and c[2]>white ) or (len(c) > 3 and c[3]< treshold )
+  return (len(c)> 2 and c[0]>=white and c[1]>=white and c[2]>=white ) or (len(c) > 3 and c[3]<= treshold )
 
 def negate01(image,layermask,drawinglayer,treshold) :
   pdb.gimp_context_push()
